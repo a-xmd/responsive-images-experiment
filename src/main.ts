@@ -1,4 +1,3 @@
-import "./frontpage.css";
 import EmblaCarousel from "embla-carousel";
 
 const rootNode = document.querySelector(".embla");
