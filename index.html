@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="experiments with srcset and sizes and avif images"
+    />
+    <title>image exps</title>
+    <style>
+      /* from: https://web.dev/learn/design/responsive-images */
+      img,
+      video,
+      iframe {
+        max-inline-size: 100%;
+        block-size: auto;
+      }
+
+      /* own */
+
+      ol {
+        margin: unset;
+      }
+
+      img {
+        display: block;
+      }
+
+      /* from: https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css */
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        /* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        line-height: 1.15; /* 1. Correct the line height in all browsers. */
+        -webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
+        tab-size: 4; /* 3. Use a more readable tab size (opinionated). */
+      }
+
+      /*
+      Sections
+      ========
+      */
+
+      body {
+        margin: 0; /* Remove the margin in all browsers. */
+      }
+
+      /*
+      Text-level semantics
+      ====================
+      */
+
+      /**
+      Add the correct font weight in Chrome and Safari.
+      */
+
+      b,
+      strong {
+        font-weight: bolder;
+      }
+
+      /*
+      Forms
+      =====
+      */
+
+      /**
+      1. Change the font styles in all browsers.
+      2. Remove the margin in Firefox and Safari.
+      */
+
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit; /* 1 */
+        font-size: 100%; /* 1 */
+        line-height: 1.15; /* 1 */
+        margin: 0; /* 2 */
+      }
+
+      /**
+      Correct the inability to style clickable types in iOS and Safari.
+      */
+
+      button,
+      [type="button"],
+      [type="reset"],
+      [type="submit"] {
+        -webkit-appearance: button;
+      }
+    </style>
+    <style>
+      main {
+        max-width: calc(932px);
+        margin: 0 auto;
+
+        @media screen and (min-width: 620px) {
+          padding: 0 1rem;
+        }
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      .embla {
+        --slide-size: 100%;
+        --slide-spacing: 0.5rem;
+        overflow: hidden;
+        line-height: 1;
+
+        cursor: grab;
+
+        @media screen and (min-width: 620px) {
+          --slide-size: 50%;
+        }
+
+        @media screen and (min-width: 932px) {
+          --slide-size: 25%;
+        }
+      }
+      .embla__container {
+        display: flex;
+        touch-action: pan-y pinch-zoom;
+        margin-left: calc(var(--slide-spacing) * -1);
+      }
+
+      .images-carrousel {
+        list-style-type: none;
+        padding: unset;
+      }
+
+      .embla__slide {
+        transform: translate3d(0, 0, 0);
+        flex: 0 0 var(--slide-size);
+        min-width: 0;
+        padding-left: var(--slide-spacing);
+
+        img {
+          background-color: #ede4fe;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>responsive images test</h1>
+      <div class="embla">
+        <ol class="embla__container images-carrousel">
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 1"
+              src="images/originals/1.jpg"
+              width="4624"
+              height="3472"
+              srcset="
+                images/conversions/1/400w.avif 400w,
+                images/conversions/1/600w.avif 600w,
+                images/conversions/1/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 2"
+              src="images/originals/2.jpg"
+              width="4624"
+              height="3472"
+              srcset="
+                images/conversions/2/400w.avif 400w,
+                images/conversions/2/600w.avif 600w,
+                images/conversions/2/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 3"
+              src="images/originals/3.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/3/400w.avif 400w,
+                images/conversions/3/600w.avif 600w,
+                images/conversions/3/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 4"
+              src="images/originals/4.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/4/400w.avif 400w,
+                images/conversions/4/600w.avif 600w,
+                images/conversions/4/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 5"
+              src="images/originals/5.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/5/400w.avif 400w,
+                images/conversions/5/600w.avif 600w,
+                images/conversions/5/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 6"
+              src="images/originals/6.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/6/400w.avif 400w,
+                images/conversions/6/600w.avif 600w,
+                images/conversions/6/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 7"
+              src="images/originals/7.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/7/400w.avif 400w,
+                images/conversions/7/600w.avif 600w,
+                images/conversions/7/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 8"
+              src="images/originals/8.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/8/400w.avif 400w,
+                images/conversions/8/600w.avif 600w,
+                images/conversions/8/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+          <li class="embla__slide">
+            <img
+              alt="karwendel landscape part 9"
+              src="images/originals/9.jpg"
+              width="4624"
+              height="3472"
+              loading="lazy"
+              srcset="
+                images/conversions/9/400w.avif 400w,
+                images/conversions/9/600w.avif 600w,
+                images/conversions/9/900w.avif 900w
+              "
+              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+            />
+          </li>
+        </ol>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
