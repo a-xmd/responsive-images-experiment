@@ -1,9 +1,43 @@
+import "./frontpage.css";
 import EmblaCarousel from "embla-carousel";
 
-const emblaNode = document.querySelector(".embla");
-const options = { loop: false };
+const rootNode = document.querySelector(".embla");
+const viewportNode = rootNode
+  ? rootNode!.querySelector(".embla__viewport")
+  : null;
 
-if (emblaNode) {
-  const emblaApi = EmblaCarousel(emblaNode as HTMLElement, options);
-  console.log(emblaApi.slideNodes()); // Access API
+if (viewportNode && rootNode) {
+  const embla = EmblaCarousel(viewportNode as HTMLElement);
+
+  const prevButtonNode = rootNode!.querySelector(
+    ".embla__prev",
+  ) as HTMLButtonElement;
+  const nextButtonNode = rootNode.querySelector(
+    ".embla__next",
+  ) as HTMLButtonElement;
+
+  if (
+    prevButtonNode instanceof HTMLButtonElement &&
+    nextButtonNode instanceof HTMLButtonElement
+  ) {
+    (prevButtonNode as HTMLButtonElement).addEventListener(
+      "click",
+      () => {
+        embla.scrollPrev();
+      },
+      false,
+    );
+    (nextButtonNode as HTMLButtonElement).addEventListener(
+      "click",
+      () => {
+        embla.scrollNext();
+      },
+      false,
+    );
+
+    embla.on("select", () => {
+      prevButtonNode.disabled = !embla.canScrollPrev();
+      nextButtonNode.disabled = !embla.canScrollNext();
+    });
+  }
 }

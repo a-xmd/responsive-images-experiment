@@ -99,6 +99,12 @@
       [type="submit"] {
         -webkit-appearance: button;
       }
+
+      button {
+        background-color: unset;
+        border: unset;
+        padding: unset;
+      }
     </style>
     <style>
       main {
@@ -121,8 +127,6 @@
         overflow: hidden;
         line-height: 1;
 
-        cursor: grab;
-
         @media screen and (min-width: 620px) {
           --slide-size: 50%;
         }
@@ -135,6 +139,14 @@
         display: flex;
         touch-action: pan-y pinch-zoom;
         margin-left: calc(var(--slide-spacing) * -1);
+
+        @media screen and (min-width: 620px) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .embla__viewport {
+        cursor: grab;
       }
 
       .images-carrousel {
@@ -152,156 +164,208 @@
           background-color: #ede4fe;
         }
       }
+
+      .sliders {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid black;
+
+        .slide-button {
+          border: 1px solid black;
+          display: inline-flex;
+          padding: 0.5rem;
+          background-color: black;
+
+          &:disabled {
+            opacity: 50%;
+          }
+
+          &:not(:disabled) {
+            cursor: pointer;
+          }
+
+          &:focus-visible {
+            outline: 0.25rem dashed orange;
+            outline-offset: -0.25rem;
+          }
+
+          svg {
+            width: 1.75rem;
+            fill: white;
+          }
+        }
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>responsive images test</h1>
       <div class="embla">
-        <ol class="embla__container images-carrousel">
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 1"
-              src="images/originals/1.jpg"
-              width="4624"
-              height="3472"
-              srcset="
-                images/conversions/1/220w.avif 220w,
-                images/conversions/1/400w.avif 400w,
-                images/conversions/1/600w.avif 600w,
-                images/conversions/1/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 2"
-              src="images/originals/2.jpg"
-              width="4624"
-              height="3472"
-              srcset="
-                images/conversions/2/220w.avif 220w,
-                images/conversions/2/400w.avif 400w,
-                images/conversions/2/600w.avif 600w,
-                images/conversions/2/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 3"
-              src="images/originals/3.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/3/220w.avif 220w,
-                images/conversions/3/400w.avif 400w,
-                images/conversions/3/600w.avif 600w,
-                images/conversions/3/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 4"
-              src="images/originals/4.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/4/220w.avif 220w,
-                images/conversions/4/400w.avif 400w,
-                images/conversions/4/600w.avif 600w,
-                images/conversions/4/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 5"
-              src="images/originals/5.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/5/220w.avif 220w,
-                images/conversions/5/400w.avif 400w,
-                images/conversions/5/600w.avif 600w,
-                images/conversions/5/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 6"
-              src="images/originals/6.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/6/220w.avif 220w,
-                images/conversions/6/400w.avif 400w,
-                images/conversions/6/600w.avif 600w,
-                images/conversions/6/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 7"
-              src="images/originals/7.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/7/220w.avif 220w,
-                images/conversions/7/400w.avif 400w,
-                images/conversions/7/600w.avif 600w,
-                images/conversions/7/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 8"
-              src="images/originals/8.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/8/220w.avif 220w,
-                images/conversions/8/400w.avif 400w,
-                images/conversions/8/600w.avif 600w,
-                images/conversions/8/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-          <li class="embla__slide">
-            <img
-              alt="karwendel landscape part 9"
-              src="images/originals/9.jpg"
-              width="4624"
-              height="3472"
-              loading="lazy"
-              srcset="
-                images/conversions/9/220w.avif 220w,
-                images/conversions/9/400w.avif 400w,
-                images/conversions/9/600w.avif 600w,
-                images/conversions/9/900w.avif 900w
-              "
-              sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
-            />
-          </li>
-        </ol>
+        <div class="embla__viewport">
+          <ol class="embla__container images-carrousel">
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 1"
+                src="images/originals/1.jpg"
+                width="4624"
+                height="3472"
+                srcset="
+                  images/conversions/1/220w.avif 220w,
+                  images/conversions/1/400w.avif 400w,
+                  images/conversions/1/600w.avif 600w,
+                  images/conversions/1/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 2"
+                src="images/originals/2.jpg"
+                width="4624"
+                height="3472"
+                srcset="
+                  images/conversions/2/220w.avif 220w,
+                  images/conversions/2/400w.avif 400w,
+                  images/conversions/2/600w.avif 600w,
+                  images/conversions/2/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 3"
+                src="images/originals/3.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/3/220w.avif 220w,
+                  images/conversions/3/400w.avif 400w,
+                  images/conversions/3/600w.avif 600w,
+                  images/conversions/3/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 4"
+                src="images/originals/4.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/4/220w.avif 220w,
+                  images/conversions/4/400w.avif 400w,
+                  images/conversions/4/600w.avif 600w,
+                  images/conversions/4/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 5"
+                src="images/originals/5.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/5/220w.avif 220w,
+                  images/conversions/5/400w.avif 400w,
+                  images/conversions/5/600w.avif 600w,
+                  images/conversions/5/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 6"
+                src="images/originals/6.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/6/220w.avif 220w,
+                  images/conversions/6/400w.avif 400w,
+                  images/conversions/6/600w.avif 600w,
+                  images/conversions/6/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 7"
+                src="images/originals/7.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/7/220w.avif 220w,
+                  images/conversions/7/400w.avif 400w,
+                  images/conversions/7/600w.avif 600w,
+                  images/conversions/7/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 8"
+                src="images/originals/8.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/8/220w.avif 220w,
+                  images/conversions/8/400w.avif 400w,
+                  images/conversions/8/600w.avif 600w,
+                  images/conversions/8/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+            <li class="embla__slide">
+              <img
+                alt="karwendel landscape part 9"
+                src="images/originals/9.jpg"
+                width="4624"
+                height="3472"
+                loading="lazy"
+                srcset="
+                  images/conversions/9/220w.avif 220w,
+                  images/conversions/9/400w.avif 400w,
+                  images/conversions/9/600w.avif 600w,
+                  images/conversions/9/900w.avif 900w
+                "
+                sizes="(max-width: 619px) 100vw, (max-width: 931px) calc(50vw - 20px), 219px"
+              />
+            </li>
+          </ol>
+        </div>
+        <div class="sliders">
+          <button
+            disabled
+            class="embla__prev slide-button"
+            aria-label="Slide to previous image"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+              <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+            </svg>
+          </button>
+          <button
+            class="embla__next slide-button"
+            aria-label="Slide to next image"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+              <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
